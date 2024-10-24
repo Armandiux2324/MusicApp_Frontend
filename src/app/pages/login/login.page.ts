@@ -3,26 +3,26 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.page.html',
-  styleUrls: ['./usuarios.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class UsuariosPage implements OnInit {
+export class LoginPage implements OnInit {
 
   constructor(private http: HttpClient) { }
   url = environment.backend;
-  usuarios: any[] = [];
   ngOnInit() {
-    this.getAll()
+    this.login();
   }
-  getAll(){
-    this.http.get(this.url + '/users').subscribe({
-      next(data){
+
+  login(){
+    this.http.post(this.url + '/login', {username: 'juanito2', password: '123456'}).subscribe({
+      next(data) {
         console.log(data);
-      }, 
-      error(err){
+      }, error(err) {
         console.log(err);
-      }
+      },
     })
   }
+
 }
