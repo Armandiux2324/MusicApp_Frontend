@@ -1,7 +1,0 @@
-{
-  "name": "frontend_musica",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
