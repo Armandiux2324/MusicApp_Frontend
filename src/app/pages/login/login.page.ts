@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -9,20 +8,32 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private http: HttpClient) { }
-  url = environment.backend;
+  constructor(private api:ApiService) { }
   ngOnInit() {
-    this.login();
   }
 
+  user = '';
+  pass = '';
+
   login(){
-    this.http.post(this.url + '/login', {username: 'juanito2', password: '123456'}).subscribe({
-      next(data) {
-        console.log(data);
-      }, error(err) {
-        console.log(err);
+    this.api.login(this.user, this.pass).subscribe({
+      next(data){
+        console.log(data)
+      }, error(error){
+        console.log(error);
       },
     })
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'A Short Title Is Best',
+      subHeader: 'A Sub Header Is Optional',
+      message: 'A message should be a short, complete sentence.',
+      buttons: ['Action'],
+    });
+
+    await alert.present();
   }
 
 }
