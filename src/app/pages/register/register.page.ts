@@ -3,28 +3,28 @@ import { AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
 
   constructor(private api:ApiService, private alertCtrl:AlertController) { }
+  username = "";
+  password = "";
+  email = "";
+  name = "";
+
   ngOnInit() {
   }
 
-  user = '';
-  pass = '';
-
-  login(){
-    this.api.login(this.user, this.pass).subscribe({
+  register(){
+    this.api.register(this.username, this.email, this.password, this.name).subscribe({
       next:(data:any) => {
-        //console.log(data)
         this.presentAlert('Información', data.message);
-      }, error:(error) => {
-        //console.log(error);
+      }, error:(error:any) => {
         this.presentAlert('Información', 'Intenta más tarde');
-      },
+      }
     })
   }
 
@@ -37,5 +37,6 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
+
 
 }

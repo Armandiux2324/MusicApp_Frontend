@@ -1,0 +1,9 @@
+<ion-content [fullscreen]="true">
+  <ion-input [(ngModel)] = "username" type="text" placeholder="Usuario"></ion-input>
+  <ion-input [(ngModel)] = "email" type="email" placeholder="Email"></ion-input>
+  <ion-input [(ngModel)] = "password" type="password" placeholder="Contraseña"></ion-input>
+  <ion-input [(ngModel)] = "name" type="text" placeholder="Nombre completo"></ion-input>
+  <ion-button (click)="register()" shape="round">
+    Crear cuenta
+  </ion-button>
+</ion-content>

@@ -13,4 +13,8 @@ export class ApiService {
   login(user:string, pass:string){
     return this.http.post(this.url + '/login', {username:user, password:pass});
   }
+
+  register(username:string, email:string, password:string, name:String){
+    return this.http.post(this.url + '/users', {username:username, password:password, email:email, name:name});
+  }
 }
